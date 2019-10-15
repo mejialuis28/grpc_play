@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcSongService";
+
+package Songs;
+
+// The song finder service definition.
+service SongFinder {
+  // Looks for songs
+  rpc FindSong (SongFinderRequest) returns (SongFinderReply);
+}
+
+// The request message containing the term to search for a song
+message SongFinderRequest {
+  string term = 1;
+}
+
+// The response message containing the song list that matches the term.
+message SongFinderReply {
+  repeated Song Songs = 1;
+}
+
+message Song {
+	string songName = 1;
+	int32 reproductions = 2;
+}
